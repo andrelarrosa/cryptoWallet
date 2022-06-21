@@ -10,7 +10,7 @@ import com.crypto.wallet.model.Usuario;
 public interface RepositorioUsuario extends JpaRepository<Usuario, Long>{
 	
 	@Query(value ="select a from Usuario a where a.nome like %?1% ")
-	Page<Usuario> findByNome(String nome, Pageable page);
+	Page<Usuario> findByCpf(String cpf, Pageable page);
 	
 	Page<Usuario> findAll(Pageable page);
 
