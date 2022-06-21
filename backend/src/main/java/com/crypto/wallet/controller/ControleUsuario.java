@@ -37,12 +37,12 @@ public class ControleUsuario {
 
 	@GetMapping(value = "/usuario", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Page<Usuario>> findAll(
-			@RequestBody(required = false) String nome, String cpf, 
+			@RequestBody(required = false) String cpf, 
 			Pageable pageable) {
-		if (StringUtils.isEmpty(nome)) {
+		if (StringUtils.isEmpty(cpf)) {
 			return ResponseEntity.ok(servicoUsuario.findAll(pageable));
 		} else {
-			return ResponseEntity.ok(servicoUsuario.findAllByNome(nome, pageable));
+			return ResponseEntity.ok(servicoUsuario.findAllByCpf(cpf, pageable));
 		}
 	}
 	
