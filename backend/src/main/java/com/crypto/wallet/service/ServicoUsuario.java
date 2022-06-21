@@ -33,13 +33,13 @@ public class ServicoUsuario {
 		return repositorioUsuario.findAll(pageable);
 	}
 	
-	public Page<Usuario> findAllByNome(String nome, Pageable page){
-		Page<Usuario>usuarios = repositorioUsuario.findByNome(nome,page);
+	public Page<Usuario> findAllByCpf(String cpf, Pageable page){
+		Page<Usuario>usuarios = repositorioUsuario.findByCpf(cpf,page);
 		return usuarios;
 	}
 	
 	public Usuario save(Usuario usuario) throws BadResourceException,ResourceAlreadyExistsException{
-		if(!StringUtils.isEmpty(usuario.getNome())) {
+		if(!StringUtils.isEmpty(usuario.getCpf())) {
 			if(usuario.getId() != null && existsById(usuario.getId())) {
 				throw new ResourceAlreadyExistsException("Usuario com id: "+ usuario.getId()+"já existe.");
 			}
@@ -53,7 +53,7 @@ public class ServicoUsuario {
 	}
 	
 	public void update(Usuario usuario) throws BadResourceException, ResourceNotFoundException{
-		if(!StringUtils.isEmpty(usuario.getNome())) {
+		if(!StringUtils.isEmpty(usuario.getCpf())) {
 			if(!existsById(usuario.getId())) {
 				throw new ResourceNotFoundException("Usuário não encontrado com o id: "+usuario.getId());
 			}
